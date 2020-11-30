@@ -1,6 +1,5 @@
 # タイムスタンプ変更ツール
-
-![画面](Readme__image\image1.JPG)
+![画面](https://github.com/takuya-ohno/Tool_ChangeTimeStamp/blob/master/Readme__image/image1.JPG)
 
 
 ## 使い方
