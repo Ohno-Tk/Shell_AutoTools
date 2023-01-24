@@ -1,0 +1,31 @@
+;==============================================
+; Description : TELNET Auto login
+; Created     : 2023/01/24
+; modified    :
+;==============================================
+;; 接続先サーバ・ユーザ名・パスワード設定
+HOSTADDR = '接続先サーバIPアドレス'
+USERNAME = 'ユーザ名'
+PASSWORD = 'パスワード'
+;==============================================
+;; コマンド組立て
+COMMAND = HOSTADDR
+strconcat COMMAND ':23 /nossh /T=1'
+
+;; ⑤ログファイル名の設定
+getdir LOGSPATH
+getdate LOG_NAME '\logs\%Y%m%d_%H%M%S.log'
+strconcat FULLPATH LOGSPATH
+strconcat FULLPATH LOG_NAME
+
+;; サーバ接続
+connect COMMAND
+
+;; ログ取得開始
+logopen FULLPATH 0 1 0 1 0 0 0
+
+;; ログイン情報応答（ユーザ名・パスワード）
+wait 'login:'
+sendln USERNAME
+wait 'Password:'
+sendln PASSWORD
